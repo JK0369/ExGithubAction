@@ -16,6 +16,4 @@ jobs:
     - name: Build
       run: echo Hello, world!
     - name: Run tests
-      run: | 
-        echo Add other actions to build,
-        echod test, and edploy your project
+      run: echo Add other actions to build
