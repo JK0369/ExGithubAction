@@ -18,4 +18,4 @@ jobs:
     - name: Run tests
       run: | 
         echo Add other actions to build,
-        echo test, and edploy your project
+        echoh test, and edploy your project
