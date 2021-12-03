@@ -17,5 +17,4 @@ jobs:
       run: echo Hello, world!
     - name: Run tests
       run: | 
-        echo Add other actions to build,
-        echoh test, and edploy your project
+        xcodebuild clean test -project ExGithubAction.xcodeproj -scheme ExGithubAction -destination "platform=iOS Simulator,name=iPhone 11"
