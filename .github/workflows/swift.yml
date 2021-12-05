@@ -60,6 +60,13 @@ jobs:
         security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
 
+        echo `ls .github/secrets/*.mobileprovision`
+          # 프로파일들을 rename하고 새로만든 디렉토리에 복사
+          for PROVISION in `ls .github/secrets/*.mobileprovision`
+          do
+            UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i ./$PROVISION)`
+          cp "./$PROVISION" "$HOME/Library/MobileDevice/Provisioning Profiles/$UUID.mobileprovision"
+        done
     # Cocoapods을 사용 할 경우
     # - name: Archive
     #   run: |
