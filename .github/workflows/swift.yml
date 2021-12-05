@@ -28,7 +28,7 @@ jobs:
       CERTS_ENCRYPTION_PWD: ${{ secrets.CERTS_ENCRYPTO_PWD }}
       PROFILES_ENCRYPTO_PWD: ${{ secrets.PROFILES_ENCRYPTO_PWD }}
 
-      XC_ARCHIVE_PATH: ${{ 'ExGithubAction.xcarchive' }}
+      XC_ARCHIVE_PATH: ${{ './GithubActions2.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
       XC_EXPORTOPTIONS_PLIST_PATH: ${{ './.github/ExportOptions.plist' }}
 
