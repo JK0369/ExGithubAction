@@ -10,11 +10,16 @@ jobs:
   build:
 
     runs-on: macos-latest
-
+    env: 
+      XC_VERSION: ${{ '13.1' }}
+      XC_PROJECT: ${{ 'ExGithubAction.xcodeproj' }}
+      XC_SCHEME: ${{ 'ExGithubAction' }}
     steps:
+    - name: Select latest Xcode
+      run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
     - uses: actions/checkout@v2
     - name: Build
       run: echo Hello, world!
     - name: Run tests
       run: | 
-        xcodebuild clean test -project ExGithubAction.xcodeproj -scheme ExGithubAction -destination "platform=iOS Simulator,name=iPhone 11"
+        /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 13'
