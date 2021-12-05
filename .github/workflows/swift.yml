@@ -30,7 +30,7 @@ jobs:
 
       XC_ARCHIVE_PATH: ${{ './ExGithubAction.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
-      XC_EXPORTOPTIONS_PLIST_PATH: ${{ './.github/ExportOptions.plist' }}
+      XC_EXPORTOPTIONS_PLIST_PATH: ${{ './ExportOptions.plist' }}
 
     steps:
     - name: Select latest Xcode
@@ -81,7 +81,7 @@ jobs:
 
     - name: Export for App Store
       run: | 
-        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist .github/ExportOptions.plist -exportPath "$XC_EXPORT_PATH"
+        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist "$XC_EXPORTOPTIONS_PLIST_PATH" -exportPath "$XC_EXPORT_PATH"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
