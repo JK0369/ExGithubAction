@@ -38,7 +38,7 @@ jobs:
       run: echo Hello, world!
     - name: Run tests
       run: | 
-        /usr/bin/xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 13'
+        xcodebuild test -project "$XC_PROJECT" -scheme "$XC_SCHEME" -destination 'platform=iOS Simulator,name=iPhone 13'
     - name: Configure Keychain 
       run: | 
         security create-keychain -p "" "$KEYCHAIN" 
