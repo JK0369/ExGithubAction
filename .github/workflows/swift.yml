@@ -28,7 +28,7 @@ jobs:
       CERTS_ENCRYPTION_PWD: ${{ secrets.CERTS_ENCRYPTO_PWD }}
       PROFILES_ENCRYPTO_PWD: ${{ secrets.PROFILES_ENCRYPTO_PWD }}
 
-      XC_ARCHIVE_PATH: ${{ 'ExGithubAction.xcarichive' }}
+      XC_ARCHIVE_PATH: ${{ './ExGithubAction.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
       XC_EXPORTOPTIONS_PLIST_PATH: ${{ './.github/ExportOptions.plist' }}
 
@@ -60,7 +60,7 @@ jobs:
         security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
 
-        echo "ls .github/secrets/*.mobileprovision"
+        echo `ls .github/secrets/*.mobileprovision`
         # 프로파일들을 rename하고 새로만든 디렉토리에 복사
         for PROVISION in `ls .github/secrets/*.mobileprovision`
           do
