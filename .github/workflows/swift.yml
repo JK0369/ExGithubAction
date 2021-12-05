@@ -57,7 +57,6 @@ jobs:
         security import "$DECRYPTED_CERTS_FILE_PATH" -k "$KEYCHAIN" -P "$CERTS_EXPORT_PWD" -A
         security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-        cd ".github/secrets"
 
     - name: Archive
       run: | 
@@ -66,7 +65,7 @@ jobs:
 
     - name: Export for App Store
       run: | 
-        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist ExportOptions.plist -exportPath "$XC_EXPORT_PATH"
+        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist "$XC_EXPORTOPTIONS_PLIST_PATH" -exportPath "$XC_EXPORT_PATH"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
