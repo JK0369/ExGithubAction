@@ -16,6 +16,8 @@ jobs:
       XC_SCHEME: ${{ 'ExGithubAction' }}
       KEYCHAIN: ${{ 'test.keychain' }} # GitHub가상 머신에 키체인 생성할때의 이름
 
+      PROJECT_ROOT_PATH: ${{ 'ExGithubAction' }}
+
       ENCRYPTED_CERTS_FILE_PATH: ${{ '.github/secrets/certs.p12.gpg' }}
       DECRYPTED_CERTS_FILE_PATH: ${{ '.github/secrets/certs.p12' }} # 어디에 복호화 할 것인지 명시
 
@@ -57,6 +59,27 @@ jobs:
         security import "$DECRYPTED_CERTS_FILE_PATH" -k "$KEYCHAIN" -P "$CERTS_EXPORT_PWD" -A
         security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
         mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+
+    # Cocoapods을 사용 할 경우
+    # - name: Archive
+    #   run: |
+    #     pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH"/
+    #     xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
+
+    - name: Archive
+      run: | 
+        mkdir artifacts
+        xcodebuild archive -project "$XC_PROJECT" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
+
+    - name: Export for App Store
+      run: | 
+        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist "$XC_EXPORTOPTIONS_PLIST_PATH" -exportPath "$XC_EXPORT_PATH"
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: ./artifacts    
 
     - name: Archive
       run: | 
