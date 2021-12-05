@@ -80,23 +80,8 @@ jobs:
 
     - name: Export for App Store
       run: | 
-        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist "$XC_EXPORTOPTIONS_PLIST_PATH" -exportPath "$XC_EXPORT_PATH"
-
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Artifacts
-        path: ./artifacts    
-
-    - name: Archive
-      run: | 
-        mkdir artifacts
-        xcodebuild archive -project "$XC_PROJECT" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
-
-    - name: Export for App Store
-      run: | 
         xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist ExportOptions.plist -exportPath "$XC_EXPORT_PATH"
-  
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
