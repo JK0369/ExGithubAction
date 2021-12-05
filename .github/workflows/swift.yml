@@ -29,6 +29,7 @@ jobs:
       PROFILES_ENCRYPTO_PWD: ${{ secrets.PROFILES_ENCRYPTO_PWD }}
 
       XC_ARCHIVE_PATH: ${{ 'ExGithubAction.xcarchive' }}
+      XC_EXPORT_PATH: ${{ './artifacts' }}
 
     steps:
     - name: Select latest Xcode
@@ -79,7 +80,7 @@ jobs:
 
     - name: Export for App Store
       run: | 
-        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist ExportOptions.plist -exportPath . -allowProvisioningUpdates
+        xcodebuild -exportArchive -archivePath "$XC_ARCHIVE_PATH" -exportOptionsPlist ExportOptions.plist -exportPath "$XC_EXPORT_PATH"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
