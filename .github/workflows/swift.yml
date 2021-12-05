@@ -30,7 +30,7 @@ jobs:
 
       XC_ARCHIVE_PATH: ${{ './ExGithubAction.xcarichive' }}
       XC_EXPORT_PATH: ${{ './artifacts' }}
-      XC_EXPORTOPTIONS_PLIST_PATH: ${{ '.github/ExportOptions.plist' }}
+      XC_EXPORTOPTIONS_PLIST_PATH: ${{ './ExportOptions.plist' }}
 
     steps:
     - name: Select latest Xcode
