@@ -10,7 +10,7 @@
     <string>SS7U83UJNK</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>SS7U83UJNK.com.jake.ExGithubAction</key>
+        <key>com.jake.ExGithubAction</key>
         <string>ExGithubAction</string>
     </dict>
     <key>signingCertificate</key>
