@@ -67,16 +67,17 @@ jobs:
             UUID=`/usr/libexec/PlistBuddy -c 'Print :UUID' /dev/stdin <<< $(security cms -D -i ./$PROVISION)`
           cp "./$PROVISION" "$HOME/Library/MobileDevice/Provisioning Profiles/$UUID.mobileprovision"
         done
-    # Cocoapods을 사용 할 경우
-    # - name: Archive
-    #   run: |
-    #     pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH"/
-    #     xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
 
     - name: Archive
       run: | 
         mkdir artifacts
         xcodebuild archive -project "$XC_PROJECT" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE_PATH"
+
+    # Cocoapods을 사용 할 경우
+    # - name: Archive
+    #   run: |
+    #     pod install --repo-update --clean-install --project-directory="$PROJECT_ROOT_PATH"/
+    #     xcodebuild clean archive -workspace "$XC_WORKSPACE" -scheme "$XC_SCHEME" -configuration release -archivePath "$XC_ARCHIVE"
 
     - name: Export for App Store
       run: | 
