@@ -11,7 +11,7 @@ jobs:
 
     runs-on: macos-latest
     env: 
-      XC_VERSION: ${{ '13.0' }}
+      XC_VERSION: ${{ '13.1' }}
       XC_PROJECT: ${{ 'ExGithubAction.xcodeproj' }}
       XC_SCHEME: ${{ 'ExGithubAction' }}
       KEYCHAIN: ${{ 'test.keychain' }} # GitHub가상 머신에 키체인 생성할때의 이름
